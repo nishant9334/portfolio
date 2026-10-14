@@ -1,0 +1,134 @@
+{
+  "profile": {
+    "name": "Nishant Parmar",
+    "shortName": "Nishant",
+    "tagline": "I build web apps, Android and mobile apps, and data dashboards.",
+    "role": "Full Stack Developer & Data Analyst",
+    "specialization": "Full Stack · Android · React Native · Data Analysis",
+    "location": "Vadodara, Gujarat, India",
+    "yearsOfExperience": "Early career",
+    "bio": "I am a Computer Science student at Parul University, graduating in 2027. I build web and Android apps, and I work with data using Python and pandas. During a remote internship at Bluestock Fintech, I cleaned financial statements, calculated company ratios and built dashboards. I am looking for Full Stack Developer and Data Analyst roles.",
+    "avatarSvg": "",
+    "social": {
+      "github": "https://github.com/nishant9334",
+      "linkedin": "https://www.linkedin.com/in/nishant9334",
+      "instagram": "",
+      "email": "nishantparmar1404@gmail.com",
+      "phone": "+91 9023597167",
+      "website": "https://nishant9334.github.io"
+    }
+  },
+  "skills": {
+    "categories": [
+      { "name": "Languages", "items": ["Python", "SQL", "JavaScript", "Kotlin", "Java", "C", "Swift"] },
+      { "name": "Data & Analytics", "items": ["pandas", "Data Cleaning", "Exploratory Data Analysis", "Chart.js", "Tableau"] },
+      { "name": "Full Stack & Mobile", "items": ["React Native (Expo)", "Jetpack Compose", "HTML5", "CSS3", "Flask", "REST APIs"] },
+      { "name": "Databases", "items": ["MongoDB", "SQL", "Room"] },
+      { "name": "Tools & Cloud", "items": ["Git", "GitHub", "Vercel", "Android Studio", "Xcode", "Visual Studio Code", "AWS Cloud Practitioner"] }
+    ]
+  },
+  "services": [
+    { "title": "Full Stack Web Development", "description": "Web applications built with JavaScript, HTML, CSS, Flask and MongoDB, with REST APIs." },
+    { "title": "Android App Development", "description": "Offline-first Android apps in Kotlin with Jetpack Compose and Room." },
+    { "title": "Mobile Apps", "description": "Cross-platform screens and interfaces built with React Native and Expo." },
+    { "title": "Data Analysis and Dashboards", "description": "Data cleaning, ratio analysis and interactive dashboards using Python, pandas and Chart.js." }
+  ],
+  "experience": [
+    {
+      "company": "Bluestock Fintech",
+      "role": "Data Analyst Intern",
+      "period": "Apr 2026 – May 2026",
+      "location": "Remote",
+      "summary": "A remote internship focused on financial data and dashboards.",
+      "highlights": [
+        "Cleaned and standardized balance sheet, profit and loss, and cash flow data using Python and pandas. Calculated debt-to-equity, net profit margin, interest coverage and free cash flow.",
+        "Built a company health scoring model and Chart.js dashboards (sector treemap, screener, risk and return map) for Nifty-100-style companies, checked with automated tests.",
+        "Built REST API endpoints for village search and autocomplete across state, district and sub-district levels, secured with API keys. Deployed the projects on Vercel."
+      ]
+    },
+    {
+      "company": "Self-directed",
+      "role": "React Native Developer",
+      "period": "Ongoing",
+      "location": "Vadodara, India",
+      "summary": "Learning and building mobile screens with React Native and Expo.",
+      "highlights": [
+        "Building frontend screens with React Native (Expo), focusing on UI and UX.",
+        "Taught myself React Native over the past 3 months."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "spendwise",
+      "title": "SpendWise",
+      "subtitle": "Expense Tracker and Analytics App (Android)",
+      "description": "An offline-first Android app for recording income and expenses. All data is stored on the device with Room. The analytics dashboard shows savings rate, spending by category, monthly trends, month-over-month comparison and budget alerts. Users can export CSV files for analysis in Excel or Python.",
+      "stack": ["Kotlin", "Jetpack Compose", "Room", "MVVM", "Android Studio", "Git"],
+      "role": "Developer",
+      "year": "",
+      "link": "",
+      "source": "https://github.com/nishant9334/SpendWise",
+      "image": "",
+      "highlight": true
+    },
+    {
+      "id": "resumeiq",
+      "title": "ResumeIQ",
+      "subtitle": "Resume Tracker and Editor",
+      "description": "A browser app that scores PDF and DOCX resumes from 0 to 100 against a documented rubric. AI suggestions are approved one at a time. An application tracker stores resume versions and shows an analytics dashboard.",
+      "stack": ["JavaScript", "Chart.js", "Vercel Functions", "Gemini API", "node:test"],
+      "role": "Developer",
+      "year": "",
+      "link": "https://resumeiq-bay.vercel.app",
+      "source": "https://github.com/nishant9334/ResumeIQ",
+      "image": "",
+      "highlight": false
+    },
+    {
+      "id": "b100-intelligence",
+      "title": "B100 Intelligence",
+      "subtitle": "Fundamental Analysis Dashboard",
+      "description": "An interactive dashboard for Nifty-100-style companies, built with synthetic data. It includes a sector treemap, a screener, a risk and return map and a 100-point company health score. A mock location REST API is included as a demo.",
+      "stack": ["HTML", "CSS", "JavaScript", "Chart.js", "Python", "pandas", "pytest"],
+      "role": "Developer",
+      "year": "",
+      "link": "https://b100-intelligence-lemon.vercel.app",
+      "source": "https://github.com/nishant9334/b100-intelligence",
+      "image": "",
+      "highlight": false
+    },
+    {
+      "id": "fresh-mart",
+      "title": "Fresh-mart",
+      "subtitle": "Smart Store Locator and Inventory",
+      "description": "A grocery web app for product search, with stock status and aisle locations. The admin panel manages inventory and sends low-stock alerts. Customers have accounts with hashed passwords and order history.",
+      "stack": ["Python", "Flask", "MongoDB", "HTML", "CSS", "JavaScript"],
+      "role": "Developer",
+      "year": "",
+      "link": "https://fresh-mart-navy.vercel.app",
+      "source": "https://github.com/nishant9334/Fresh-mart",
+      "image": "",
+      "highlight": false
+    }
+  ],
+  "education": [
+    { "school": "Parul University", "degree": "B.Tech, Computer Science and Engineering", "period": "2023 – 2027" },
+    { "school": "Rajveer Secondary H.S. School", "degree": "11th–12th, MPBSE", "period": "May 2021 – Mar 2023" }
+  ],
+  "certifications": [
+    { "title": "Data Analytics Job Simulation", "issuer": "Deloitte", "date": "Oct 2026" },
+    { "title": "GenAI Powered Data Analytics Job Simulation", "issuer": "Tata (Forage)", "date": "Oct 2026" },
+    { "title": "Data Science Essentials with Python", "issuer": "Cisco", "date": "Oct 2026" },
+    { "title": "Data Analytics Essentials", "issuer": "Cisco", "date": "Sep 2026" },
+    { "title": "Introduction to Data Science", "issuer": "Cisco", "date": "Sep 2026" },
+    { "title": "Cloud Practitioner Essentials", "issuer": "AWS", "date": "Sep 2025" },
+    { "title": "Graduate, Cloud Foundations Training Badge", "issuer": "AWS Academy", "date": "Sep 2025" }
+  ],
+  "achievements": [
+    "12 winner and participation certificates from daily quizzes.",
+    "Participant, Code Clash 2025 (Unstop App).",
+    "Participant, APC Algo Hour 2.0."
+  ],
+  "testimonials": []
+}

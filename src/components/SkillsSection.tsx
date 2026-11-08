@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, TrendingUp, Target, Brain, Layers, Database, Code, Smartphone, Server, Globe } from 'lucide-react';
+import { CheckCircle, TrendingUp, Target, Database, Code, Smartphone, Server, Globe } from 'lucide-react';
 import { usePortfolio } from '../hooks/usePortfolio';
 
 const categoryIcons: Record<string, typeof Code> = {
@@ -19,21 +19,21 @@ const categoryColors: Record<string, { bg: string; text: string; border: string 
   'Tools & Cloud': { bg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/30' },
 };
 
-const proficiencyLevels = ['Beginner', 'Learning', 'Intermediate', 'Advanced', 'Expert'];
-
 export default function SkillsSection() {
   const { skills, achievements } = usePortfolio();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
-  const allSkills = useMemo(() =>
-    skills.categories.flatMap(cat =>
-      cat.items.map(skill => ({ ...skill, category: cat.name }))
-    ), [skills]
+  const allSkills = useMemo(
+    () =>
+      skills.categories.flatMap((cat) =>
+        cat.items.map((name: string) => ({ name, category: cat.name }))
+      ),
+    [skills]
   );
 
   const filteredSkills = selectedCategory
-    ? allSkills.filter(s => s.category === selectedCategory)
+    ? allSkills.filter((s) => s.category === selectedCategory)
     : allSkills;
 
   return (
@@ -93,58 +93,66 @@ export default function SkillsSection() {
               transition={{ duration: 0.3 }}
               className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
             >
-              {filteredSkills.map((skill, index) => (
-                <motion.div
-                  key={`${skill.category}-${skill}`}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: index * 0.03, duration: 0.3 }}
-                  className="group relative"
-                >
-                  <button
-                    onMouseEnter={() => setHoveredSkill(skill)}
-                    onMouseLeave={() => setHoveredSkill(null)}
-                    className={`w-full rounded-2xl bg-bg-card border border-border p-5 text-left transition-all hover:border-border-hover hover:shadow-lg ${
-                      hoveredSkill === skill ? 'border-accent/50 shadow-accent/10' : ''
-                    }`}
+              {filteredSkills.map((skill, index) => {
+                const Icon = categoryIcons[skill.category] ?? Code;
+                return (
+                  <motion.div
+                    key={`${skill.category}-${skill.name}`}
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ delay: index * 0.03, duration: 0.3 }}
+                    className="group relative"
                   >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${categoryColors[skill.category]?.bg}`}>
-                        <categoryIcons[skill.category] size={20} className={categoryColors[skill.category]?.text} />
-                      </div>
-                      <div>
-                        <span className="text-xs font-mono tracking-widest uppercase text-fg-subtle">{skill.category}</span>
-                        <motion.div
-                          key={hoveredSkill === skill}
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden text-xs text-accent font-medium"
+                    <button
+                      onMouseEnter={() => setHoveredSkill(skill.name)}
+                      onMouseLeave={() => setHoveredSkill(null)}
+                      className={`w-full rounded-2xl bg-bg-card border border-border p-5 text-left transition-all hover:border-border-hover hover:shadow-lg ${
+                        hoveredSkill === skill.name ? 'border-accent/50 shadow-accent/10' : ''
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div
+                          className={`w-10 h-10 rounded-xl flex items-center justify-center ${categoryColors[skill.category]?.bg}`}
                         >
-                          {getProficiency(skill)}
-                        </motion.div>
-                      </div>
-                    </div>
-                    <h4 className="font-medium text-fg group-hover:text-accent transition-colors">{skill}</h4>
-                  </button>
-
-                  <AnimatePresence>
-                    {hoveredSkill === skill && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="absolute bottom-full left-0 right-0 mb-2 p-3 rounded-xl bg-bg-elevated border border-border shadow-lg z-10"
-                      >
-                        <div className="flex items-center gap-2 text-xs text-fg-muted">
-                          <TrendingUp size={12} className="text-accent" />
-                          <span>Proficiency: {getProficiency(skill)}</span>
+                          <Icon size={20} className={categoryColors[skill.category]?.text} />
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
+                        <div>
+                          <span className="text-xs font-mono tracking-widest uppercase text-fg-subtle">
+                            {skill.category}
+                          </span>
+                          <motion.div
+                            key={String(hoveredSkill === skill.name)}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            className="overflow-hidden text-xs text-accent font-medium"
+                          >
+                            {getProficiency(skill.name)}
+                          </motion.div>
+                        </div>
+                      </div>
+                      <h4 className="font-medium text-fg group-hover:text-accent transition-colors">
+                        {skill.name}
+                      </h4>
+                    </button>
+
+                    <AnimatePresence>
+                      {hoveredSkill === skill.name && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className="absolute bottom-full left-0 right-0 mb-2 p-3 rounded-xl bg-bg-elevated border border-border shadow-lg z-10"
+                        >
+                          <div className="flex items-center gap-2 text-xs text-fg-muted">
+                            <TrendingUp size={12} className="text-accent" />
+                            <span>Proficiency: {getProficiency(skill.name)}</span>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -199,7 +207,7 @@ function getProficiency(skill: string): string {
     pandas: 'Advanced',
     'Data Cleaning': 'Advanced',
     'Exploratory Data Analysis': 'Advanced',
-    Chart.js: 'Intermediate',
+    'Chart.js': 'Intermediate',
     Tableau: 'Intermediate',
     'React Native (Expo)': 'Intermediate',
     'Jetpack Compose': 'Intermediate',

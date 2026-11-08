@@ -1,12 +1,3 @@
-export interface Social {
-  github: string;
-  linkedin: string;
-  instagram: string;
-  email: string;
-  phone: string;
-  website: string;
-}
-
 export interface Profile {
   name: string;
   shortName: string;
@@ -20,9 +11,22 @@ export interface Profile {
   social: Social;
 }
 
+export interface Social {
+  github?: string;
+  linkedin?: string;
+  instagram?: string;
+  email?: string;
+  phone?: string;
+  website?: string;
+}
+
 export interface SkillCategory {
   name: string;
   items: string[];
+}
+
+export interface Skills {
+  categories: SkillCategory[];
 }
 
 export interface Service {
@@ -53,16 +57,16 @@ export interface Project {
   highlight: boolean;
 }
 
-export interface Certification {
-  title: string;
-  issuer: string;
-  date: string;
-}
-
 export interface Education {
   school: string;
   degree: string;
   period: string;
+}
+
+export interface Certification {
+  title: string;
+  issuer: string;
+  date: string;
 }
 
 export interface Testimonial {
@@ -73,9 +77,9 @@ export interface Testimonial {
   avatarColor: string;
 }
 
-export interface Portfolio {
+export interface PortfolioData {
   profile: Profile;
-  skills: { categories: SkillCategory[] };
+  skills: Skills;
   services: Service[];
   experience: Experience[];
   projects: Project[];

@@ -9,9 +9,13 @@ export default function Footer() {
   const [copied, setCopied] = useState(false);
   const year = new Date().getFullYear();
 
+  const email = profile.social.email ?? '';
+  const phone = profile.social.phone ?? '';
+
   const copyEmail = async () => {
+    if (!email) return;
     try {
-      await navigator.clipboard.writeText(profile.social.email);
+      await navigator.clipboard.writeText(email);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -66,7 +70,7 @@ export default function Footer() {
                 >
                   <a
                     href={link.href}
-                    className="text-fg-muted hover:text-accent transition-colors flex items-center gap-2"
+                    className="group text-fg-muted hover:text-accent transition-colors flex items-center gap-2"
                   >
                     {link.label}
                     <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -79,36 +83,43 @@ export default function Footer() {
           <div className="space-y-6">
             <h3 className="font-semibold text-fg">Get In Touch</h3>
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <Mail size={20} className="text-accent" />
-                <div>
-                  <p className="text-sm text-fg-muted">Email</p>
-                  <div className="flex items-center gap-2">
-                    <a
-                      href={`mailto:${profile.social.email}`}
-                      className="text-fg hover:text-accent transition-colors"
-                    >
-                      {profile.social.email}
-                    </a>
-                    <button
-                      onClick={copyEmail}
-                      className="p-2 rounded-xl bg-bg-card border border-border text-fg-muted hover:text-accent hover:border-accent/50 transition-all"
-                      aria-label={copied ? 'Copied to clipboard' : 'Copy email'}
-                    >
-                      {copied ? <Check size={16} className="text-success" /> : <Copy size={16} />}
-                    </button>
+              {email && (
+                <div className="flex items-center gap-3">
+                  <Mail size={20} className="text-accent" />
+                  <div>
+                    <p className="text-sm text-fg-muted">Email</p>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`mailto:${email}`}
+                        className="text-fg hover:text-accent transition-colors"
+                      >
+                        {email}
+                      </a>
+                      <button
+                        onClick={copyEmail}
+                        className="p-2 rounded-xl bg-bg-card border border-border text-fg-muted hover:text-accent hover:border-accent/50 transition-all"
+                        aria-label={copied ? 'Copied to clipboard' : 'Copy email'}
+                      >
+                        {copied ? <Check size={16} className="text-success" /> : <Copy size={16} />}
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone size={20} className="text-accent-warm" />
-                <div>
-                  <p className="text-sm text-fg-muted">Phone</p>
-                  <a href={`tel:${profile.social.phone?.replace(/\s/g, '')}`} className="text-fg hover:text-accent transition-colors">
-                    {profile.social.phone}
-                  </a>
+              )}
+              {phone && (
+                <div className="flex items-center gap-3">
+                  <Phone size={20} className="text-accent-warm" />
+                  <div>
+                    <p className="text-sm text-fg-muted">Phone</p>
+                    <a
+                      href={`tel:${phone.replace(/\s/g, '')}`}
+                      className="text-fg hover:text-accent transition-colors"
+                    >
+                      {phone}
+                    </a>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             <SocialLinks social={profile.social} variant="footer" />
           </div>

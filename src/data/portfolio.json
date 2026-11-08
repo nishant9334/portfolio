@@ -59,19 +59,19 @@
     }
   ],
   "projects": [
-    {
-      "id": "spendwise",
-      "title": "SpendWise",
-      "subtitle": "Expense Tracker and Analytics App (Android)",
-      "description": "An offline-first Android app for recording income and expenses. All data is stored on the device with Room. The analytics dashboard shows savings rate, spending by category, monthly trends, month-over-month comparison and budget alerts. Users can export CSV files for analysis in Excel or Python.",
-      "stack": ["Kotlin", "Jetpack Compose", "Room", "MVVM", "Android Studio", "Git"],
-      "role": "Developer",
-      "year": "",
-      "link": "",
-      "source": "https://github.com/nishant9334/SpendWise",
-      "image": "",
-      "highlight": true
-    },
+   {
+  "id": "spendwise",
+  "title": "SpendWise",
+  "subtitle": "Expense Tracker and Analytics App (Android)",
+  "description": "An offline-first Android app for recording income and expenses. All data is stored on the device with Room. The analytics dashboard shows savings rate, spending by category, monthly trends, month-over-month comparison and budget alerts. Users can export CSV files for analysis in Excel or Python.",
+  "stack": ["Kotlin", "Jetpack Compose", "Room", "MVVM", "Android Studio", "Git"],
+  "role": "Developer",
+  "year": "",
+  "link": "https://spendwise-application.netlify.app/",
+  "source": "",
+  "image": "",
+  "highlight": true
+},
     {
       "id": "resumeiq",
       "title": "ResumeIQ",

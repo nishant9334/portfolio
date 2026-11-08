@@ -5,7 +5,6 @@ import { useState, useCallback, useEffect } from 'react';
 
 export default function TestimonialsSection() {
   const { testimonials } = usePortfolio();
-  if (testimonials.length === 0) return null;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -19,10 +18,12 @@ export default function TestimonialsSection() {
   }, [testimonials.length]);
 
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isAutoPlaying || testimonials.length === 0) return;
     const interval = setInterval(next, 5000);
     return () => clearInterval(interval);
-  }, [isAutoPlaying, next]);
+  }, [isAutoPlaying, next, testimonials.length]);
+
+  if (testimonials.length === 0) return null;
 
   return (
     <section id="testimonials" className="section-container">
@@ -59,7 +60,10 @@ export default function TestimonialsSection() {
 
           <div className="flex items-center justify-center gap-4 mt-8">
             <motion.button
-              onClick={() => { prev(); setIsAutoPlaying(false); }}
+              onClick={() => {
+                prev();
+                setIsAutoPlaying(false);
+              }}
               className="p-3 rounded-full bg-bg-card border border-border text-fg-muted hover:text-fg hover:border-border-hover hover:bg-bg-elevated transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -72,11 +76,12 @@ export default function TestimonialsSection() {
               {testimonials.map((_, index) => (
                 <motion.button
                   key={index}
-                  onClick={() => { setCurrentIndex(index); setIsAutoPlaying(false); }}
+                  onClick={() => {
+                    setCurrentIndex(index);
+                    setIsAutoPlaying(false);
+                  }}
                   className={`w-2.5 h-2.5 rounded-full transition-all ${
-                    index === currentIndex
-                      ? 'bg-accent w-8'
-                      : 'bg-fg-subtle hover:bg-fg-muted'
+                    index === currentIndex ? 'bg-accent w-8' : 'bg-fg-subtle hover:bg-fg-muted'
                   }`}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
@@ -86,7 +91,10 @@ export default function TestimonialsSection() {
             </div>
 
             <motion.button
-              onClick={() => { next(); setIsAutoPlaying(false); }}
+              onClick={() => {
+                next();
+                setIsAutoPlaying(false);
+              }}
               className="p-3 rounded-full bg-bg-card border border-border text-fg-muted hover:text-fg hover:border-border-hover hover:bg-bg-elevated transition-all"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -105,7 +113,8 @@ export default function TestimonialsSection() {
           className="mt-12 text-center"
         >
           <p className="text-fg-muted">
-            {testimonials.length} testimonial{'s' : ''} · Click dots or use arrows to navigate · Auto-play pauses on interaction
+            {testimonials.length} testimonial{testimonials.length !== 1 ? 's' : ''} · Click dots or use arrows to
+            navigate · Auto-play pauses on interaction
           </p>
         </motion.div>
       </motion.div>
@@ -113,7 +122,11 @@ export default function TestimonialsSection() {
   );
 }
 
-function TestimonialCard({ testimonial }: { testimonial: { quote: string; name: string; role: string; avatarColor: string } }) {
+function TestimonialCard({
+  testimonial,
+}: {
+  testimonial: { quote: string; name: string; role: string; avatarColor: string };
+}) {
   return (
     <div className="w-full min-w-0 rounded-2xl bg-bg-card border border-border p-8">
       <div className="flex gap-2 mb-4">
@@ -125,7 +138,10 @@ function TestimonialCard({ testimonial }: { testimonial: { quote: string; name: 
         &ldquo;{testimonial.quote}&rdquo;
       </blockquote>
       <div className="flex items-center gap-4 pt-4 border-t border-border/50">
-        <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-white" style={{ backgroundColor: testimonial.avatarColor }}>
+        <div
+          className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold text-white"
+          style={{ backgroundColor: testimonial.avatarColor }}
+        >
           {testimonial.name.charAt(0)}
         </div>
         <div>

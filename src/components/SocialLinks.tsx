@@ -6,8 +6,8 @@ const socialItems = [
   { key: 'github', label: 'GitHub', Icon: Github, href: (s: Social) => s.github },
   { key: 'linkedin', label: 'LinkedIn', Icon: Linkedin, href: (s: Social) => s.linkedin },
   { key: 'instagram', label: 'Instagram', Icon: Instagram, href: (s: Social) => s.instagram },
-  { key: 'email', label: 'Email', Icon: Mail, href: (s: Social) => s.email ? `mailto:${s.email}` : '' },
-  { key: 'phone', label: 'Phone', Icon: Phone, href: (s: Social) => s.phone ? `tel:${s.phone.replace(/\s/g, '')}` : '' },
+  { key: 'email', label: 'Email', Icon: Mail, href: (s: Social) => (s.email ? `mailto:${s.email}` : '') },
+  { key: 'phone', label: 'Phone', Icon: Phone, href: (s: Social) => (s.phone ? `tel:${s.phone.replace(/\s/g, '')}` : '') },
   { key: 'website', label: 'Website', Icon: Globe, href: (s: Social) => s.website },
 ] as const;
 
@@ -18,8 +18,8 @@ interface Props {
 
 export default function SocialLinks({ social, variant = 'default' }: Props) {
   const items = socialItems
-    .map(item => ({ ...item, href: item.href(social) }))
-    .filter(item => item.href);
+    .map((item) => ({ ...item, href: item.href(social) ?? '' }))
+    .filter((item) => item.href !== '');
 
   if (variant === 'compact') {
     return (
@@ -30,6 +30,7 @@ export default function SocialLinks({ social, variant = 'default' }: Props) {
             href={item.href}
             target={item.href.startsWith('http') ? '_blank' : undefined}
             rel="noopener noreferrer"
+            aria-label={item.label}
             className="p-2 rounded-xl bg-bg-card border border-border text-fg-muted hover:text-accent hover:border-accent/50 transition-all"
             whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
@@ -76,7 +77,7 @@ export default function SocialLinks({ social, variant = 'default' }: Props) {
           href={item.href}
           target={item.href.startsWith('http') ? '_blank' : undefined}
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-xl bg-bg-card border border-border px-4 py-2.5 text-sm text-fg-muted hover:text-accent hover:border-accent/50 hover:bg-bg-elevated transition-all"
+          className="group inline-flex items-center gap-2 rounded-xl bg-bg-card border border-border px-4 py-2.5 text-sm text-fg-muted hover:text-accent hover:border-accent/50 hover:bg-bg-elevated transition-all"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
           initial={{ opacity: 0, y: 10 }}
@@ -85,7 +86,9 @@ export default function SocialLinks({ social, variant = 'default' }: Props) {
         >
           <item.Icon size={18} />
           <span>{item.label}</span>
-          {item.href.startsWith('http') && <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />}
+          {item.href.startsWith('http') && (
+            <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+          )}
         </motion.a>
       ))}
     </div>
